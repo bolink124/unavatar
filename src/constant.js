@@ -18,8 +18,9 @@ const {
   RATE_LIMIT = 50
 } = process.env
 
-const API_URL =
-  NODE_ENV === 'production' ? 'https://unavatar.io' : `http://127.0.0.1:${PORT}`
+const API_URL = 
+  process.env.API_URL || 
+  (NODE_ENV === 'production' ? 'https://unavatar-production-f923.up.railway.app' : `http://127.0.0.1:${PORT}`)
 
 module.exports = {
   ...process.env,
