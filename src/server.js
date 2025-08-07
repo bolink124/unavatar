@@ -47,7 +47,7 @@ if (NODE_ENV === 'production') {
     }
     keepAlive()
     return keepAlive
-  })(10000)
+  })(300000)
 
   server.on('request', () => !isClosing && keepAlive())
 }
