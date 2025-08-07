@@ -19,8 +19,7 @@ const {
 } = process.env
 
 const API_URL = 
-  process.env.API_URL || 
-  (NODE_ENV === 'production' ? 'https://unavatar-production-f923.up.railway.app' : `http://127.0.0.1:${PORT}`)
+  NODE_ENV === 'production' ? `http://0.0.0.0:${PORT}` : `http://127.0.0.1:${PORT}`
 
 module.exports = {
   ...process.env,
