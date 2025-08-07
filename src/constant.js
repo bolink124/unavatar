@@ -13,7 +13,7 @@ const {
   TTL_MIN = ms('1h'),
   TTL_MAX = ms('28d'),
   NODE_ENV = 'development',
-  PORT = 3000,
+  PORT = process.env.PORT || 3000,
   RATE_LIMIT_WINDOW = 86400,
   RATE_LIMIT = 50
 } = process.env
