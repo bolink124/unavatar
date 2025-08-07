@@ -13,7 +13,7 @@ const server = createServer((req, res) =>
   require('./util/uuid').withUUID(() => require('.')(req, res))
 )
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   debug({
     status: 'listening',
     environment: NODE_ENV,
