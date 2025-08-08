@@ -83,6 +83,10 @@ router
     }
   )
   .get('ping', (_, res) => send(res, 200, 'pong'))
+  .get('/', (req, res) => {
+  res.writeHead(302, { Location: 'https://vc-flow.com' });
+  res.end();
+})
   .get('/:key', (req, res) =>
     ssrCache({
       req,
