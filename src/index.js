@@ -38,6 +38,38 @@ const router = createRouter((error, _, res) => {
 })
 
 router
+
+router
+  .use((req, res, next) => {
+    // Toegestane IP adressen
+    const allowedIPs = [
+      '85.215.133.225',        // Je VPS
+      '127.0.0.1',             // localhost
+      '::1',                   // localhost IPv6
+      '::ffff:127.0.0.1'       // localhost IPv4-mapped IPv6
+    ];
+    
+    const clientIP = req.headers['x-forwarded-for']?.split(',')[0]?.trim() 
+                    || req.headers['cf-connecting-ip'] 
+                    || req.headers['x-real-ip']
+                    || req.connection.remoteAddress 
+                    || req.socket.remoteAddress;
+    
+    // Log voor debugging
+    console.log(`Request from IP: ${clientIP}`);
+    
+    // Check IP whitelist
+    if (!allowedIPs.includes(clientIP)) {
+      console.log(`❌ Blocked request from IP: ${clientIP}`);
+      return send(res, 403, 'Access Denied');
+    }
+    
+    console.log(`✅ Allowed request from IP: ${clientIP}`);
+    next();
+  })
+  // ... hier komt je bestaande middleware (helmet, cors, etc.)
+
+  
   .use(
     (req, res, next) => {
       if (req.url.startsWith('/twitter')) {
