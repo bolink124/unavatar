@@ -43,7 +43,9 @@ router
   .use((req, res, next) => {
     // Toegestane IP adressen
     const allowedIPs = [
-      '85.215.133.225',        // Je VPS
+      '85.215.133.225',        // Je test VPS
+      '188.245.57.17'          // production VPS
+      '193.186.4.59'           // thuis ip
       '127.0.0.1',             // localhost
       '::1',                   // localhost IPv6
       '::ffff:127.0.0.1'       // localhost IPv4-mapped IPv6
